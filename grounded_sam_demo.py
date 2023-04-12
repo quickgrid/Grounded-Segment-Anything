@@ -15,7 +15,7 @@ from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
 
 # segment anything
-from segment_anything import build_sam, SamPredictor 
+from segment_anything import build_sam, SamPredictor, sam_model_registry 
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -177,7 +177,8 @@ if __name__ == "__main__":
     )
 
     # initialize SAM
-    predictor = SamPredictor(build_sam(checkpoint=sam_checkpoint))
+    # predictor = SamPredictor(build_sam(checkpoint=sam_checkpoint))
+    predictor = SamPredictor(sam_model_registry['vit_l'](checkpoint=sam_checkpoint))
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     predictor.set_image(image)
@@ -214,4 +215,3 @@ if __name__ == "__main__":
     )
 
     save_mask_data(output_dir, masks, boxes_filt, pred_phrases)
-
