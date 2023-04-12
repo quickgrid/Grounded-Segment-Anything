@@ -1,3 +1,7 @@
+# Update
+
+- grounded_sam_demo.py uses vit_l model of [segment anything](https://github.com/facebookresearch/segment-anything).
+
 ![](./assets/Grounded-SAM_logo.png)
 
 # Grounded-Segment-Anything
